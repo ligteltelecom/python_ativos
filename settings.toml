@@ -1,0 +1,2 @@
+DATABASE_URI = "sqlite:///data/ativos_db.sqlite"
+MODIFICATIONS = false

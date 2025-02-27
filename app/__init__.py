@@ -1,0 +1,24 @@
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+import jose
+from dynaconf import Dynaconf
+import datetime
+
+def create_app():
+  app = Flask(__name__)
+
+ 
+    
+  settings = Dynaconf(
+    envvar_prefix="DYNACONF",
+    settings_files=['settings.toml', '.secrets.toml'],
+  )
+  
+
+  app.config['SQLALCHEMY_DATABASE_URI'] = settings.DATABASE_URI
+  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = settings.MODIFICATIONS
+  app.config['SECRET_KEY'] = settings.SECRET_KEY
+  
+  db = SQLAlchemy(app)
+  
+  return app
