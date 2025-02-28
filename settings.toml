@@ -1,2 +1,2 @@
-DATABASE_URI = "sqlite:///data/ativos_db.sqlite"
+DATABASE_URI = "sqlite:///ativos.db"
 MODIFICATIONS = false
