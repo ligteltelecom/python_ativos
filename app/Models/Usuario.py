@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy.sql import func
-from app import db
+from app.database import db
 
 class Usuario(db.Model):
     __tablename__ = 'usuarios'
@@ -14,8 +14,4 @@ class Usuario(db.Model):
         self.nome = nome
         self.email = email
         self.senha = senha
-
-        
-        
-
 

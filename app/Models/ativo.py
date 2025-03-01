@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy.sql import func
-from app import db
+from app.database import db
 
 class Ativo(db.Model):
     __tablename__ = 'ativos'
