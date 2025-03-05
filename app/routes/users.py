@@ -1,9 +1,9 @@
-from flask import Blueprint, request
 from app.controllers import user_controller
 from app.auth import authetication
-
+from flask import Blueprint, request
 
 userRoute = Blueprint('users', __name__)
+
 
 @userRoute.route('/auth/register', methods=['POST'])
 def register_user(): 

@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint
 from app.controllers import home_controller
 
 homeRoute = Blueprint('home', __name__)

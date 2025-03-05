@@ -1,5 +1,5 @@
 from flask import Flask
-from app.routes import userRoute, homeRoute
+from app.routes import userRoute, homeRoute, ativoRoute
 from app.database import db
 
 from flask_migrate import Migrate
@@ -23,4 +23,5 @@ def create_app():
   from app.models import Usuario, Ativo
   app.register_blueprint(userRoute)
   app.register_blueprint(homeRoute)
+  app.register_blueprint(ativoRoute)
   return app

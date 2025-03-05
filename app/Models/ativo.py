@@ -11,3 +11,10 @@ class Ativo(db.Model):
     tipo = db.Column(db.String(100), nullable=False)
     preco = db.Column(db.Numeric, nullable=False)
     data_aquisicao = db.Column(db.DateTime(timezone=True),default=datetime.now(),server_default=func.now())
+    
+    def __init__(self,user_id,nome,codigo,tipo,preco):
+        self.user_id = user_id
+        self.nome = nome
+        self.codigo = codigo
+        self.tipo = tipo
+        self.preco = preco
