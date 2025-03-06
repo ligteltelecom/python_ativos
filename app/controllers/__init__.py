@@ -1,1 +1,1 @@
-from app.controllers import user_controller, home_controller
+from app.controllers import user_controller, home_controller, ativo_controller
