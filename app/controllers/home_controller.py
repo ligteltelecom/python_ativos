@@ -8,7 +8,7 @@ def get_ip():
 
 class HomeController:
     def index(self):
-        return jsonify({'message': 'Server is running', 'status': 'ok'}),200
+        return jsonify({'messagem': 'Servidor esta rodando...', 'status': 'ok'}),200
     
     def ping(self):
-        return jsonify({'message': 'Ping ok', 'ip': get_ip(),'status': 'ok'}),200
+        return jsonify({'messagem': 'Ping ok', 'ip': get_ip(),'status': 'ok'}),200

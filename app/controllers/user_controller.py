@@ -5,7 +5,7 @@ from app.models import Usuario
 from bcrypt import hashpw, gensalt
 
 class UserController:
-    def register_user(self, request):
+    def register_user(request):
         try:
             #get the request data and insert into the table Usuario
             userRegister = Usuario(
@@ -21,25 +21,25 @@ class UserController:
             db.session.add(userRegister)
             db.session.commit()
             return jsonify({
-                "message": "User registered", 
-                "status": "Success",
-                "user":{
+                "message": "Usuario cadastrado", 
+                "status": "Sucesso",
+                "Usuario":{
                     "id": userRegister.id, 
                     "nome": userRegister.nome, 
                     "email": userRegister.email
                     }}),201
         
         except Exception as e:
-            return jsonify({'message': 'Error', 'msgError': repr(e)}),409
+            return jsonify({'messagem': 'Erro', 'msgErro': repr(e)}),409
     
-    def listAll(self):
+    def listAll():
         try:
             #Get all users from the table Usuario
             users = Usuario.query.all()            
             return jsonify({
-                "message": "List of users",
-                "status": "Success",
-                "users": [{
+                "messagem": "Lista de usuarios",
+                "status": "Sucesso",
+                "usuarios": [{
                     "id": user.id, 
                     "nome": user.nome, 
                     "email": user.email
