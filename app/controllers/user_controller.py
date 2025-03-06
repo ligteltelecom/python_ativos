@@ -1,7 +1,7 @@
 import bcrypt
 from app.database import db
 from flask import jsonify, request
-from app.models import Usuario
+from app.modelos import Usuario
 from bcrypt import hashpw, gensalt
 
 class UserController:

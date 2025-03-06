@@ -1,6 +1,6 @@
 from flask import jsonify
 from app.database import db
-from app.models import Ativo
+from app.modelos import Ativo
 
 class AtivoController:
     def getAtivos(self):

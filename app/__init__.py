@@ -20,7 +20,7 @@ def create_app():
   db.init_app(app)  
   Migrate(app, db)
   
-  from app.models import Usuario, Ativo
+  from app.modelos import Usuario, Ativo
   app.register_blueprint(userRoute)
   app.register_blueprint(homeRoute)
   app.register_blueprint(ativoRoute)
