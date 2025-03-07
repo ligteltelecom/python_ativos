@@ -18,3 +18,13 @@ class Ativo(db.Model):
         self.codigo = codigo
         self.tipo = tipo
         self.preco = preco
+        
+    def to_json(self):
+        return {
+            'id': self.id,
+            'nome': self.nome,
+            'codigo': self.codigo,
+            'tipo': self.tipo,
+            'preco': str(self.preco),
+            'data_aquisicao': self.data_aquisicao
+        }

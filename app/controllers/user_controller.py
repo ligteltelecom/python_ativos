@@ -1,9 +1,9 @@
 import datetime
-import bcrypt
 from app.database import db
 from flask import jsonify, request
 from app.modelos import Usuario
-from bcrypt import hashpw, gensalt
+
+from bcrypt import hashpw, gensalt, checkpw
 from flask_jwt_extended import create_access_token, get_jwt_identity
 
 
@@ -13,7 +13,7 @@ class UserController:
             user = Usuario.query.filter_by(email=request['email']).first()
             if not user:
                 return jsonify({'messagem': 'Usuario não encontrado'}), 401
-            if not bcrypt.checkpw(request['senha'].encode('utf-8'), user.senha):
+            if not checkpw(request['senha'].encode('utf-8'), user.senha):
                 return jsonify({'message': 'Senha incorreta'}), 401
                         
          
@@ -41,14 +41,12 @@ class UserController:
             #Add the user to the database
             db.session.add(userRegister)
             db.session.commit()
+            
             return jsonify({
                 "message": "Usuario cadastrado", 
                 "status": "Sucesso",
-                "Usuario":{
-                    "id": userRegister.id, 
-                    "nome": userRegister.nome, 
-                    "email": userRegister.email
-                    }}),201
+                "usuario": userRegister.to_json()
+            }), 201
         
         except Exception as e:
             return jsonify({'messagem': 'Erro', 'msgErro': repr(e)}),409
@@ -62,11 +60,7 @@ class UserController:
             return jsonify({
                 "messagem": "Lista de usuarios",
                 "status": "Sucesso",
-                "usuarios": [{
-                    "id": user.id, 
-                    "nome": user.nome, 
-                    "email": user.email
-                } for user in users]
+                "usuarios": [user.to_json() for user in users]
             }),200
         except Exception as e:
             return jsonify({'message': 'Error', 'msgError': repr(e)}),409

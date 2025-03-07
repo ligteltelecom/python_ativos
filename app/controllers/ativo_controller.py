@@ -1,3 +1,5 @@
+import json
+from urllib import response
 from flask import jsonify
 from flask_jwt_extended import get_jwt_identity
 from app.database import db
@@ -12,14 +14,7 @@ class AtivoController:
             return jsonify({
                 "messagem": "Lista de Ativos",
                 "status": "Sucesso",
-                "ativos": [{
-                    "id": ativo.id,
-                    "codigo": ativo.codigo,
-                    "nome": ativo.nome,                
-                    "tipo": ativo.tipo,
-                    "preco": ativo.preco,
-                    "data_aquisicao": ativo.data_aquisicao,            
-                } for ativo in ativos]
+                "ativos": [ ativo.to_json() for ativo in ativos]
             }), 200
             
         except Exception as e:
@@ -43,14 +38,7 @@ class AtivoController:
             return jsonify({
                 "messagem": "Ativo cadastrado",
                 "status": "Sucesso",
-                "Ativo": {
-                    "id": ativo.id,
-                    "codigo": ativo.codigo,
-                    "name": ativo.nome,
-                    "tipo": ativo.tipo,
-                    "preco": ativo.preco,
-                    "data_aquisicao": ativo.data_aquisicao
-                }
+                "ativo": ativo.to_json()
             }), 201
         except Exception as e:
             return jsonify({'messagem': 'Erro', 'msgErro': repr(e)}),409
@@ -78,14 +66,7 @@ class AtivoController:
             return jsonify({
                 "messagem": "Ativo atualizado",
                 "status": "Sucesso",
-                "Ativo": {
-                    "id": ativo.id,
-                    "codigo": ativo.codigo,
-                    "name": ativo.nome,
-                    "tipo": ativo.tipo,
-                    "preco": ativo.preco,
-                    "data_aquisicao": ativo.data_aquisicao
-                }
+                "ativo": ativo.to_json()
             }), 200
         except Exception as e:
             return jsonify({'messagem': 'Erro', 'msgErro': repr(e)}),409
@@ -110,4 +91,4 @@ class AtivoController:
         finally:
             db.session.close()
 
-                
+    

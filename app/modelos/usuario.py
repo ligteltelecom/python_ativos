@@ -14,4 +14,11 @@ class Usuario(db.Model):
         self.nome = nome
         self.email = email
         self.senha = senha
-
+    
+    def to_json(self):
+        return {
+            "id": self.id, 
+            "nome": self.nome,
+            "email": self.email,
+            "data_criacao": self.data_criacao
+        }
