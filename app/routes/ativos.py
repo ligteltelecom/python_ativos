@@ -19,13 +19,17 @@ def register_ativo():
 @jwt_required()
 def delete_ativo(ativo_id): 
     return AtivoController.delete_ativo(ativo_id)
- 
+
 @ativoRoute.route('/ativos/<int:ativo_id>', methods=['PUT'])
 @jwt_required()
 def update_ativo(ativo_id):
     data = request.get_json() 
     return AtivoController.update_ativo(ativo_id, data)
- 
+
+@ativoRoute.route('/ativos/<int:ativo_id>/rentabilidade', methods=['GET'])
+def calc_rentabilidade(ativo_id):
+    return CotacaoController.calc_rentabilidade(ativo_id)
+
 @ativoRoute.route('/cotacao', methods=['GET'])
 def get_cotacao():
     codigo = request.get_json().get('codigo')
