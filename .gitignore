@@ -4,5 +4,6 @@ venv/
 .vscode/
 __pycache__
 *.pyc
+*.csv
 # Ignore dynaconf secret files
 #.secrets.*
