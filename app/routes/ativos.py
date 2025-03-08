@@ -27,6 +27,7 @@ def update_ativo(ativo_id):
     return AtivoController.update_ativo(ativo_id, data)
 
 @ativoRoute.route('/ativos/<int:ativo_id>/rentabilidade', methods=['GET'])
+@jwt_required()
 def calc_rentabilidade(ativo_id):
     return CotacaoController.calc_rentabilidade(ativo_id)
 
