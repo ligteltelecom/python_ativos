@@ -10,7 +10,7 @@ class CotacaoService:
             data = yf.download(list(ativos.keys()), period='1d', progress=False)['Close']
             return data.iloc[0][0] if (len(ativos.keys()) <= 1) else data
         except Exception as e:
-            return f'erro {repr(e)}', 500
+            return jsonify({'messagem': 'Erro ao buscar cotação','status': 'Erro','msgErro': repr(e)}), 500
         
     def calc_rentabilidade(ativo_id):
         try:
