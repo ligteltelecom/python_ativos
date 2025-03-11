@@ -35,3 +35,8 @@ def calc_rentabilidade(ativo_id):
 def get_cotacao():
     codigo = request.get_json().get('codigo')
     return CotacaoController.get_cotacao(codigo)
+
+@ativoRoute.route('/ativos/carteira', methods=['GET'])
+@jwt_required()
+def calc_carteira():
+    return CotacaoController.calc_carteira()

@@ -25,6 +25,6 @@ class Ativo(db.Model):
             'nome': self.nome,
             'codigo': self.codigo,
             'tipo': self.tipo,
-            'preco': str(self.preco),
+            'preco': str(f'{self.preco:.2f}'),
             'data_aquisicao': self.data_aquisicao
         }
