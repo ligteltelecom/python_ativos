@@ -4,7 +4,7 @@ from flask import jsonify, request
 from app.modelos import Usuario
 
 from bcrypt import hashpw, gensalt, checkpw
-from flask_jwt_extended import create_access_token, get_jwt_identity
+from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity
 
 
 class UserController:
@@ -18,9 +18,16 @@ class UserController:
                         
          
             access_token = create_access_token(identity=user.id)
-            return jsonify(access_token=access_token)
+            refresh_token = create_refresh_token(identity=user.id)
+            return jsonify(access_token=access_token, refresh_token=refresh_token), 200
         except Exception as e:
             return jsonify({'messagem': 'Erro', 'msgErro': repr(e)}), 409
+    
+    def refresh():
+        current_user_id = get_jwt_identity()
+        access_token = create_access_token(identity=current_user_id)
+        return jsonify(access_token=access_token),200
+        
     
     def logged():
         current_user = get_jwt_identity()

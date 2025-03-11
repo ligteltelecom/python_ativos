@@ -19,7 +19,7 @@ def create_app():
   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = settings.MODIFICATIONS
   app.config['SECRET_KEY'] = settings.SECRET_KEY
   app.config['API_KEY'] = settings.API_KEY
-  app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=5)
+  app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
   app.config['JWT_TOKEN_LOCATION'] = ['headers', 'query_string']
   app.config['JWT_VERIFY_SUB']=False
   

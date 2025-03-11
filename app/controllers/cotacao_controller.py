@@ -4,7 +4,7 @@ from app.services.cotacao_service import CotacaoService
 class CotacaoController:
     def get_cotacao(codigo):
         ativoKeys = {f'{codigo}.SA': float('0.00')}
-        ativo = CotacaoService.get_cotation_yahoo(**ativoKeys)
+        ativo = CotacaoService.get_cotation_yahoo(**ativoKeys).iloc[0]
         return jsonify({
             'messagem': f'Cotação do ativo {codigo}',
             'status': 'Sucesso',

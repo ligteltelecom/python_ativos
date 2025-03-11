@@ -1,6 +1,5 @@
 from flask_jwt_extended import jwt_required
 from app.controllers.user_controller import UserController
-from app.auth import authetication
 from flask import Blueprint, request
 
 userRoute = Blueprint('users', __name__)
@@ -9,6 +8,11 @@ userRoute = Blueprint('users', __name__)
 def login_user():
     return UserController.login_user(request.get_json())
 
+@userRoute.route("/auth/refresh", methods=["POST"])
+@jwt_required(refresh=True)
+def refresh():
+    return UserController.refresh()
+    
 @userRoute.route('/auth', methods=['GET'])
 @jwt_required()
 def logged():
@@ -22,7 +26,3 @@ def register_user():
 @jwt_required()
 def listAll():
     return UserController.listAll()
-
-@userRoute.route('/auth/loginoff', methods=['POST'])
-def auth():
-    return authetication()
